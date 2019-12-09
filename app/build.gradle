@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion Versions.compileSdk
+    defaultConfig {
+        applicationId "com.grappus.android.basemvi"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Compat
+    implementation AndroidDependencies.appCompat
+
+    //Kotlin
+    implementation AndroidDependencies.kotlinLib
+    implementation AndroidDependencies.kotlinCore
+
+    //Tests
+    testImplementation TestDependencies.junit
+    androidTestImplementation TestDependencies.junitExt
+    androidTestImplementation TestDependencies.espressoCore
+}
