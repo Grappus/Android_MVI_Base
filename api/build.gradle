@@ -36,11 +36,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
-
 }
 
 dependencies {
@@ -58,6 +56,4 @@ dependencies {
     kapt AndroidDependencies.daggerCompiler
 
     api TestDependencies.supportAnnotations
-
-
 }

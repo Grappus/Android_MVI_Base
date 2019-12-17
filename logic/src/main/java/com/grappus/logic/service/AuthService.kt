@@ -39,15 +39,17 @@ class AuthService @Inject constructor(
             }
     }
 
-    fun logout() {
-        authStore.authToken = null
-        authStore.user = null
-    }
-
+    //sample login call
     fun login(email: String, password: String): Single<LoginResponse> {
         return api.login(AuthRequest(email, password))
             .doOnSuccess {
                 authStore.authToken = it.authToken
             }
+    }
+
+    //logout user
+    fun logout() {
+        authStore.authToken = null
+        authStore.user = null
     }
 }

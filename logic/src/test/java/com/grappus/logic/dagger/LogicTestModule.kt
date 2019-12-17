@@ -16,6 +16,8 @@ import javax.inject.Singleton
 
 @Module
 class LogicTestModule : LocalApiModule() {
+
+    //reduce read time for testing purposes
     override fun addTestSpecificConfig(builder: OkHttpClient.Builder) {
         builder.readTimeout(1, TimeUnit.SECONDS)
     }

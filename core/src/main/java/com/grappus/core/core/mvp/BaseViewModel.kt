@@ -27,6 +27,19 @@ abstract class BaseViewModel<VS, VE>(
     communicationBusProvider: CommunicationBusProvider? = null
 ) : ViewModel(), LifecycleObserver {
 
+    private val TAG = this.javaClass.name
+    init {
+        communicationBusProvider?.let { bus ->
+            bus.getResultEventsObservable()
+                .filterMap<ResultEvent.AuthError>()
+                .subscribe({
+                    onNavigationAction(NavigationAction.AuthError)
+                },
+                    { Timber.e(it) }
+                )
+        }
+    }
+
     private val viewStatePublisher: BehaviorSubject<VS> = BehaviorSubject.createDefault(initialState)
     private var navigationActionPublisher: UnicastSubject<NavigationAction> = UnicastSubject.create()
 
@@ -107,20 +120,6 @@ abstract class BaseViewModel<VS, VE>(
                 }, {
                     Timber.e(it)
                 }).bindViewToLifeCycle()
-        }
-    }
-
-    private val TAG = this.javaClass.name
-
-    init {
-        communicationBusProvider?.let { bus ->
-            bus.getResultEventsObservable()
-                .filterMap<ResultEvent.AuthError>()
-                .subscribe({
-                    onNavigationAction(NavigationAction.AuthError)
-                },
-                    { Timber.e(it) }
-                )
         }
     }
 }

@@ -10,7 +10,6 @@ import org.junit.Test
 class DatatypeExtensionsTest {
     @Test
     fun `assert float formatted string returns proper values `() {
-
         val f1 = 1.0f
         val f2: Float? = null
         val f3 = 1.3f
@@ -22,7 +21,6 @@ class DatatypeExtensionsTest {
 
     @Test
     fun `assert int formatted string returns proper values `() {
-
         val i1 = 1
         val i2: Int? = null
 

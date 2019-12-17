@@ -10,7 +10,6 @@ import io.reactivex.subjects.PublishSubject
 sealed class ResultEvent {
     data class AuthChanged(val isLoggedIn: Boolean) : ResultEvent()
     object AuthError : ResultEvent()
-    object ItemUpdated : ResultEvent()
 }
 
 interface CommunicationBusProvider {

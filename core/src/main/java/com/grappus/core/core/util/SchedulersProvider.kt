@@ -9,12 +9,11 @@ import javax.inject.Singleton
 
 /**
  * Created by nimish@grappus.com on 15/12/2019.
- * Description -
+ * Description - Provides Different schedules at one place.
  */
 
 @Singleton
-open class SchedulersProvider @Inject
-constructor() {
+open class SchedulersProvider @Inject constructor() {
 
     open fun mainThread(): Scheduler = AndroidSchedulers.mainThread()
 

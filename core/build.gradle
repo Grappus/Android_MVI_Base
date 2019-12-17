@@ -25,41 +25,42 @@ android {
         debug {
             minifyEnabled false
         }
-
         snapshot {
             minifyEnabled false
         }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
     api project(':api')
 
+    //kotlin standard library
     implementation AndroidDependencies.kotlinLib
+
+    //Compat
     implementation AndroidDependencies.appCompat
 
+    //logging
     api AndroidDependencies.timber
+    //database
     api AndroidDependencies.roomRuntime
 
-    //Test
+    //junit-Test
     testImplementation TestDependencies.junit
-    androidTestImplementation TestDependencies.mockito
-
+    //mockito test
+    testImplementation TestDependencies.mockito
+    //Rx
     api AndroidDependencies.rxAndroid
 }
 

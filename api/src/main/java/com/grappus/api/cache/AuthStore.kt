@@ -41,5 +41,9 @@ class AuthStore @Inject constructor(
         }
 
     val isLoggedIn: Boolean
-        get() = !authToken.isNullOrEmpty() && user != null
+        get() = user.isNotNull()
+
+    private fun User?.isNotNull(): Boolean {
+        return !authToken.isNullOrEmpty() && user != null && this?.userId != 0L
+    }
 }

@@ -39,8 +39,6 @@ class AuthServiceTest : BaseLogicTest() {
 
     @Test
     fun `login invokes appropriate api`() {
-
-        //given
         //when
         whenever(authApi.login(AuthRequest(EMAIL, PASSWORD))).thenReturn(Single.just(LoginResponse(USER_ID, TOKEN)))
         val observer = service.login(EMAIL, PASSWORD).test()
