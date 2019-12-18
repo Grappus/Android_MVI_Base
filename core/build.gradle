@@ -1,0 +1,69 @@
+apply plugin: 'com.android.library'
+apply plugin: 'KOTLIN-android'
+apply plugin: 'KOTLIN-android-extensions'
+apply plugin: 'KOTLIN-kapt'
+
+apply plugin: 'com.diffplug.gradle.spotless'
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint(Versions.KT_LINT)
+    }
+}
+
+android {
+    compileSdkVersion Versions.COMPILE_SDK
+
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        snapshot {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api project(':api')
+
+    //KOTLIN standard library
+    implementation AndroidDependencies.kotlinLib
+
+    //Compat
+    implementation AndroidDependencies.appCompat
+
+    //logging
+    api AndroidDependencies.timber
+    //database
+    api AndroidDependencies.roomRuntime
+
+    //JUNIT-Test
+    testImplementation TestDependencies.junit
+    //mockito test
+    testImplementation TestDependencies.mockito
+    //Rx
+    api AndroidDependencies.rxAndroid
+}
+
+androidExtensions {
+    experimental = true
+}

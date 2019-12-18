@@ -1,0 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: 'KOTLIN-android'
+apply plugin: 'KOTLIN-android-extensions'
+apply plugin: 'KOTLIN-kapt'
+
+apply plugin: 'com.diffplug.gradle.spotless'
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint(Versions.KT_LINT)
+    }
+}
+
+android {
+    compileSdkVersion Versions.COMPILE_SDK
+
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        snapshot {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    //KOTLIN
+    implementation AndroidDependencies.kotlinLib
+    //rxjava
+    api AndroidDependencies.rxJava
+
+    //network calls
+    api AndroidDependencies.okHttp
+    api AndroidDependencies.retrofit
+    //response logging
+    api AndroidDependencies.okHttpLogging
+    //retrofit response to Gson convertor
+    api AndroidDependencies.retrofitGsonConvertor
+    //retrofit rxadapter
+    api AndroidDependencies.retrofitRxAdapter
+
+    //dagger
+    api AndroidDependencies.dagger
+    kapt AndroidDependencies.daggerCompiler
+
+    api TestDependencies.supportAnnotations
+    testImplementation TestDependencies.mockWebServer
+}

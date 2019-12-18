@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
+apply plugin: 'KOTLIN-android'
 
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'KOTLIN-android-extensions'
 
 android {
-    compileSdkVersion Versions.compileSdk
+    compileSdkVersion Versions.COMPILE_SDK
     defaultConfig {
         applicationId "com.grappus.android.basemvi"
-        minSdkVersion Versions.minSdk
-        targetSdkVersion Versions.targetSdk
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -23,8 +23,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     //Compat
     implementation AndroidDependencies.appCompat
 
