@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'KOTLIN-android'
+apply plugin: 'KOTLIN-android-extensions'
+apply plugin: 'KOTLIN-kapt'
 
 apply plugin: 'com.diffplug.gradle.spotless'
 spotless {
@@ -12,11 +12,11 @@ spotless {
 }
 
 android {
-    compileSdkVersion Versions.compileSdk
+    compileSdkVersion Versions.COMPILE_SDK
 
     defaultConfig {
-        minSdkVersion Versions.minSdk
-        targetSdkVersion Versions.targetSdk
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
         versionCode 1
         versionName "1.0"
     }
@@ -45,7 +45,7 @@ android {
 dependencies {
     api project(':api')
 
-    //kotlin standard library
+    //KOTLIN standard library
     implementation AndroidDependencies.kotlinLib
 
     //Compat
@@ -56,7 +56,7 @@ dependencies {
     //database
     api AndroidDependencies.roomRuntime
 
-    //junit-Test
+    //JUNIT-Test
     testImplementation TestDependencies.junit
     //mockito test
     testImplementation TestDependencies.mockito

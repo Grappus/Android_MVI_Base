@@ -1,17 +1,17 @@
 object Versions {
     //App
-    const val compileSdk = 29
-    const val minSdk = 21
-    const val targetSdk = 29
+    const val COMPILE_SDK = 29
+    const val MIN_SDK = 21
+    const val TARGET_SDK = 29
 
     //Compat
-    const val appCompat = "1.0.2"
+    const val APP_COMPAT = "1.0.2"
 
     //Kotlin
-    const val kotlin = "1.3.50"
-    const val kotlinCore = "1.0.2"
-    const val kotlinVersion = "1.3.50"
-    const val buildToolsVersion = "3.5.3"
+    const val KOTLIN = "1.3.50"
+    const val KOTLIN_CORE = "1.0.2"
+    const val KOTLIN_VERSION = "1.3.50"
+    const val BUILD_TOOLS_VERSION = "3.5.3"
 
     //logging
     const val TIMBER = "4.6.0"
@@ -32,9 +32,9 @@ object Versions {
     const val DAGGER = "2.17"
 
     //Tests
-    const val junit = "4.12"
-    const val junitExt = "1.1.0"
-    const val espressoCore = "3.1.1"
+    const val JUNIT = "4.12"
+    const val JUNIT_EXT = "1.1.0"
+    const val ESPRESSO_CORE = "3.1.1"
     const val MOCKITO = "2.8.9"
     const val MOCKITO_KOTLIN = "1.6.0"
     const val ANNOTATIONS = "1.0.0"
@@ -45,14 +45,14 @@ object Versions {
 
 object AndroidDependencies {
     //Compat
-    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val appCompat = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
 
     //Kotlin
-    const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    const val kotlinLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    const val kotlinCore = "androidx.core:core-ktx:${Versions.kotlinCore}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-    const val toolsBuildGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
+    const val kotlinPlugin = "org.jetbrains.KOTLIN:KOTLIN-gradle-plugin:${Versions.KOTLIN}"
+    const val kotlinLib = "org.jetbrains.KOTLIN:KOTLIN-stdlib-jdk7:${Versions.KOTLIN}"
+    const val kotlinCore = "androidx.core:core-ktx:${Versions.KOTLIN_CORE}"
+    const val kotlinGradlePlugin = "org.jetbrains.KOTLIN:KOTLIN-gradle-plugin:${Versions.KOTLIN_VERSION}"
+    const val toolsBuildGradlePlugin = "com.android.tools.build:gradle:${Versions.BUILD_TOOLS_VERSION}"
 
     //Logging
     const val timber = "com.jakewharton.timber:timber:${Versions.TIMBER}"
@@ -76,22 +76,22 @@ object AndroidDependencies {
     //dagger
     const val dagger = "com.google.dagger:dagger:${Versions.DAGGER}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.DAGGER}"
-
-    //testing
-    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.OKHTTP}"
 }
 
 object TestDependencies {
     //Junit
-    const val junit = "junit:junit:${Versions.junit}"
-    const val junitExt = "androidx.test.ext:junit:${Versions.junitExt}"
+    const val junit = "JUNIT:JUNIT:${Versions.JUNIT}"
+    const val junitExt = "androidx.test.ext:JUNIT:${Versions.JUNIT_EXT}"
 
     //Espresso
-    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
+    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
 
     //mockito
     const val mockito = "org.mockito:mockito-core:${Versions.MOCKITO}"
 
     const val supportAnnotations = "androidx.annotation:annotation:${Versions.ANNOTATIONS}"
-    val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
+    val mockitoKotlin = "com.nhaarman:mockito-KOTLIN:${Versions.MOCKITO_KOTLIN}"
+
+    //testing
+    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.OKHTTP}"
 }

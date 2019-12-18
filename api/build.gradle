@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'KOTLIN-android'
+apply plugin: 'KOTLIN-android-extensions'
+apply plugin: 'KOTLIN-kapt'
 
 apply plugin: 'com.diffplug.gradle.spotless'
 spotless {
@@ -12,11 +12,11 @@ spotless {
 }
 
 android {
-    compileSdkVersion Versions.compileSdk
+    compileSdkVersion Versions.COMPILE_SDK
 
     defaultConfig {
-        minSdkVersion Versions.minSdk
-        targetSdkVersion Versions.targetSdk
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
         versionCode 1
         versionName "1.0"
 
@@ -42,18 +42,25 @@ android {
 }
 
 dependencies {
+    //KOTLIN
     implementation AndroidDependencies.kotlinLib
+    //rxjava
     api AndroidDependencies.rxJava
 
+    //network calls
     api AndroidDependencies.okHttp
-    api AndroidDependencies.okHttpLogging
     api AndroidDependencies.retrofit
+    //response logging
+    api AndroidDependencies.okHttpLogging
+    //retrofit response to Gson convertor
     api AndroidDependencies.retrofitGsonConvertor
-    api AndroidDependencies.mockWebServer
+    //retrofit rxadapter
     api AndroidDependencies.retrofitRxAdapter
 
+    //dagger
     api AndroidDependencies.dagger
     kapt AndroidDependencies.daggerCompiler
 
     api TestDependencies.supportAnnotations
+    testImplementation TestDependencies.mockWebServer
 }
