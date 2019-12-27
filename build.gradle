@@ -1,15 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-
     repositories {
         google()
         jcenter()
     }
+
     dependencies {
-        classpath AndroidDependencies.toolsBuildGradlePlugin
+        classpath AndroidDependencies.gradleBuildTool
         classpath AndroidDependencies.kotlinPlugin
-        classpath AndroidDependencies.kotlinGradlePlugin
+        classpath AndroidDependencies.navigationSafeArgs
     }
 }
 
@@ -17,10 +16,15 @@ plugins {
     id "com.diffplug.gradle.spotless" version "3.14.0"
 }
 
+apply from: "extra/gradle/variants.gradle"
+
 allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 

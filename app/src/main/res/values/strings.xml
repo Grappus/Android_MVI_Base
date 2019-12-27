@@ -1,3 +1,17 @@
 <resources>
+
     <string name="app_name">Base MVI Project</string>
+
+    <!-- App Messages -->
+    <string name="message_coming_soon">Feature is coming soon…</string>
+
+    <!-- Error Messages -->
+    <string name="error_unknown">Something went wrong, please try again!</string>
+    <string name="error_unauthorized">Unauthorized user!</string>
+    <string name="error_session_expired">Your session has expired, please login again!</string>
+
+    <!-- Fragment Labels -->
+    <string name="fragment_splash" translatable="false">SplashFragment</string>
+    <string name="fragment_coming_soon" translatable="false">ComingSoonFragment</string>
+
 </resources>

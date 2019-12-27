@@ -1,0 +1,21 @@
+ext {
+
+    buildVersionCode = { version->
+        return (System.getenv('BUILD_NUMBER') ?: '1').toInteger()
+    }
+
+    buildVersionName = {
+        def major = System.getenv('VERSION_MAJOR_NUMBER') ?: 1
+        def sprint = System.getenv('VERSION_MINOR_NUMBER') ?: 1
+        def build = System.getenv('VERSION_PATCH_NUMBER') ?: 0
+        return major + "." + sprint + "." + build
+    }
+
+    debugKeyStoreFile = {
+        if (System.getenv("GENERIC_FILE_STORAGE") != null) {
+            debugFile = System.getenv("GENERIC_FILE_STORAGE") + "/debug.keystore"
+        } else {
+            debugFile = System.getenv("HOME") + "/.android/debug.keystore"
+        }
+    }
+}

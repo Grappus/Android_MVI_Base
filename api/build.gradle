@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'KOTLIN-android'
-apply plugin: 'KOTLIN-android-extensions'
-apply plugin: 'KOTLIN-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.diffplug.gradle.spotless'
 spotless {
@@ -19,48 +19,43 @@ android {
         targetSdkVersion Versions.TARGET_SDK
         versionCode 1
         versionName "1.0"
-
     }
 
     buildTypes {
         debug {
             minifyEnabled false
         }
-
-        snapshot {
+        staging {
             minifyEnabled false
         }
-
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
-        disable 'InvalidPackage'
-    }
 }
 
 dependencies {
-    //KOTLIN
+    //Tests
+    api TestDependencies.supportAnnotations
+    api(TestDependencies.mockWebServer) {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
+
+    //Kotlin
     implementation AndroidDependencies.kotlinLib
-    //rxjava
+
+    //RxJava
     api AndroidDependencies.rxJava
 
-    //network calls
-    api AndroidDependencies.okHttp
-    api AndroidDependencies.retrofit
-    //response logging
-    api AndroidDependencies.okHttpLogging
-    //retrofit response to Gson convertor
-    api AndroidDependencies.retrofitGsonConvertor
-    //retrofit rxadapter
-    api AndroidDependencies.retrofitRxAdapter
+    //Retrofit
+    api ExternalDependencies.okHttp
+    api ExternalDependencies.retrofit
+    api ExternalDependencies.okHttpLogging
+    api ExternalDependencies.retrofitGsonConvertor
+    api ExternalDependencies.retrofitRxAdapter
 
-    //dagger
-    api AndroidDependencies.dagger
-    kapt AndroidDependencies.daggerCompiler
-
-    api TestDependencies.supportAnnotations
-    testImplementation TestDependencies.mockWebServer
+    //Dagger
+    api ExternalDependencies.dagger
+    kapt ExternalDependencies.daggerCompiler
 }
