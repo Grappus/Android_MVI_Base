@@ -1,4 +1,4 @@
-package com.grappus.android.basemvi
+package com.grappus.android
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

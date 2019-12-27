@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        applicationId "com.grappus.android.basemvi"
+        applicationId "com.grappus.android"
         minSdkVersion Versions.MIN_SDK
         targetSdkVersion Versions.TARGET_SDK
         versionName buildVersionName()

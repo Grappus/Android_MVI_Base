@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.grappus.android.basemvi.R
+import com.grappus.android.R
 
 /**
  * Created by cp@grappus.com on 24/12/2019.

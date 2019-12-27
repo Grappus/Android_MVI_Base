@@ -6,14 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import com.grappus.android.basemvi.R
-import com.grappus.android.basemvi.databinding.ActivityMainBinding
+import com.grappus.android.R
+import com.grappus.android.core.contracts.MainContract
+import com.grappus.android.databinding.ActivityMainBinding
 import com.grappus.android.di.ActivityComponent
 import com.grappus.android.di.AppComponent
 import com.grappus.android.di.DaggerActivityComponent
 import com.grappus.android.listeners.ToolbarListener
 import com.grappus.android.providers.BindActivity
-import com.grappus.android.core.contracts.MainContract
 
 class MainActivity :
     AbstractActivity<MainContract.ViewState, MainContract.ViewEvent, MainContract.ViewModel>(),
