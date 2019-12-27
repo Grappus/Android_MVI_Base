@@ -19,7 +19,11 @@ android {
 
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+<<<<<<< HEAD
         applicationId "com.grappus.android.basemvi"
+=======
+        applicationId "com.grappus.android"
+>>>>>>> chores(module-app): Adds the main app module
         minSdkVersion Versions.MIN_SDK
         targetSdkVersion Versions.TARGET_SDK
         versionName buildVersionName()

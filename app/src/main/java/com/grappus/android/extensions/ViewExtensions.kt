@@ -12,7 +12,7 @@ import androidx.annotation.Px
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updateMargins
 import com.google.android.material.snackbar.Snackbar
-import com.grappus.android.basemvi.R
+import com.grappus.android.R
 import com.grappus.android.providers.TextProvider
 
 /**

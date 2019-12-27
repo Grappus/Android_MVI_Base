@@ -12,7 +12,9 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.grappus.android.basemvi.R
+import com.grappus.android.R
+import com.grappus.android.core.core.BaseViewModel
+import com.grappus.android.core.core.NavigationAction
 import com.grappus.android.di.FragmentInjector
 import com.grappus.android.di.ViewModelFactory
 import com.grappus.android.extensions.hideSoftKeyboard
@@ -22,8 +24,6 @@ import com.grappus.android.extensions.showSoftKeyboard
 import com.grappus.android.extensions.showToast
 import com.grappus.android.listeners.ToolbarListener
 import com.grappus.android.providers.TextProvider
-import com.grappus.android.core.core.BaseViewModel
-import com.grappus.android.core.core.NavigationAction
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.UnicastSubject

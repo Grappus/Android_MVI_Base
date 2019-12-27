@@ -1,7 +1,7 @@
 package com.grappus.android.providers
 
 import android.app.Application
-import com.grappus.android.basemvi.R
+import com.grappus.android.R
 import com.grappus.android.core.providers.StringId
 import com.grappus.android.core.providers.StringProvider
 import javax.inject.Inject
