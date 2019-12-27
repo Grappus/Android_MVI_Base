@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.grappus.logic">
+    package="com.grappus.android.logic">
 
     <!--     required for get network info in ErrorHandlerImpl-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
