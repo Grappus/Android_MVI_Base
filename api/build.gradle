@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.diffplug.gradle.spotless'
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint(Versions.KT_LINT)
+    }
+}
+
+android {
+    compileSdkVersion Versions.COMPILE_SDK
+
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        staging {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //Tests
+    api TestDependencies.supportAnnotations
+    api(TestDependencies.mockWebServer) {
+        exclude group: 'org.hamcrest', module: 'hamcrest-core'
+    }
+    //Allows checking for conditions via existing matchers classes & custom matcher implementations
+    testImplementation TestDependencies.hamcrest
+
+    //Kotlin
+    implementation AndroidDependencies.kotlinLib
+
+    //RxJava
+    api AndroidDependencies.rxJava
+
+    //Retrofit
+    api ExternalDependencies.okHttp
+    api ExternalDependencies.retrofit
+    api ExternalDependencies.okHttpLogging
+    api ExternalDependencies.retrofitGsonConvertor
+    api ExternalDependencies.retrofitRxAdapter
+
+    //Dagger
+    api ExternalDependencies.dagger
+    kapt ExternalDependencies.daggerCompiler
+}

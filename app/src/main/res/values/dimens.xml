@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="default_content_spacing">16dp</dimen>
+    <dimen name="vertical_spacing">16dp</dimen>
+    <dimen name="horizontal_spacing">16dp</dimen>
+
+    <dimen name="text_size_toolbar">24sp</dimen>
+    <dimen name="text_size_heading">22sp</dimen>
+    <dimen name="text_size_sub_heading">18sp</dimen>
+    <dimen name="text_size_regular">14sp</dimen>
+
+    <dimen name="space_small">5dp</dimen>
+    <dimen name="space_regular">10dp</dimen>
+    <dimen name="space_medium">15dp</dimen>
+    <dimen name="space_large">20dp</dimen>
+    <dimen name="space_large_x">25dp</dimen>
+
+</resources>

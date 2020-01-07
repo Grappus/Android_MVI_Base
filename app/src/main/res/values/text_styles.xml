@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text">
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="Text.Toolbar">
+        <item name="android:textSize">@dimen/text_size_toolbar</item>
+    </style>
+
+</resources>

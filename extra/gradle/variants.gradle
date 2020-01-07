@@ -1,0 +1,32 @@
+ext {
+    debug = [
+            applicationIdSuffix: ".dev",
+            versionNameSuffix  : "-dev",
+            testCoverageEnabled: true,
+            debuggable         : true,
+            shrinkResources    : false,
+            minifyEnabled      : false,
+            proguardFiles      : ['proguard-android.txt', "proguard-rules.pro"],
+            baseUrl             : "\"https://grappus.com/\""
+    ]
+
+    staging = [
+            applicationIdSuffix: ".staging",
+            versionNameSuffix  : "-staging",
+            testCoverageEnabled: true,
+            debuggable         : true,
+            shrinkResources    : true,
+            minifyEnabled      : true,
+            proguardFiles      : ['proguard-android-optimize.txt', "proguard-rules.pro"],
+            baseUrl             : "\"https://grappus.com/\""
+    ]
+
+    release = [
+            testCoverageEnabled: false,
+            debuggable         : false,
+            shrinkResources    : true,
+            minifyEnabled      : true,
+            proguardFiles      : ['proguard-android-optimize.txt', "proguard-rules.pro", "proguard-rules-release.pro"],
+            baseUrl             : "\"https://grappus.com/\""
+    ]
+}

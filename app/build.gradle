@@ -1,29 +1,107 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
-android {
-    compileSdkVersion Versions.compileSdk
-    defaultConfig {
-        applicationId "com.grappus.android.basemvi"
-        minSdkVersion Versions.minSdk
-        targetSdkVersion Versions.targetSdk
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+apply plugin: 'com.diffplug.gradle.spotless'
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint(Versions.KT_LINT)
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+}
+
+apply from: "../extra/gradle/misc.gradle"
+android {
+    compileSdkVersion Versions.COMPILE_SDK
+
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId "com.grappus.android"
+        minSdkVersion Versions.MIN_SDK
+        targetSdkVersion Versions.TARGET_SDK
+        versionName buildVersionName()
+        versionCode buildVersionCode(versionName)
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file(debugKeyStoreFile())
+            keyPassword 'android'
+            keyAlias 'androiddebugkey'
+            storePassword 'android'
         }
+        release {
+            //TODO Replace with release credentials
+            storeFile file(debugKeyStoreFile())
+            keyPassword 'android'
+            keyAlias 'androiddebugkey'
+            storePassword 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        staging {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    buildTypes.each { type ->
+        def flavorData = rootProject.ext[type.name]
+
+        //Test coverage
+        type.testCoverageEnabled flavorData.testCoverageEnabled
+
+        //Minify & Proguard
+        type.shrinkResources flavorData.shrinkResources
+        type.minifyEnabled flavorData.minifyEnabled
+        if (type.minifyEnabled) {
+            //Add the default proguard file
+            type.proguardFile(getDefaultProguardFile(flavorData.proguardFiles.getAt(0)))
+
+            //Add rest of the proguard files, specifically for release/prod builds
+            for (int i = 1; i < flavorData.proguardFiles.size; i++) {
+                type.proguardFile(flavorData.proguardFiles[i])
+            }
+        }
+
+        //Debugger
+        type.debuggable flavorData.debuggable
+
+        //BuildConfig/Env variables
+        type.buildConfigField 'String', 'BASE_URL', flavorData.baseUrl
+
+        //Version name suffix
+        type.versionNameSuffix flavorData.versionNameSuffix
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':logic')
+
+    //Tests
+    testImplementation TestDependencies.junit
+    androidTestImplementation TestDependencies.junitExt
+    androidTestImplementation TestDependencies.espressoCore
+    //Allows checking for conditions via existing matchers classes & custom matcher implementations
+    testImplementation TestDependencies.hamcrest
 
     //Compat
     implementation AndroidDependencies.appCompat
@@ -32,8 +110,18 @@ dependencies {
     implementation AndroidDependencies.kotlinLib
     implementation AndroidDependencies.kotlinCore
 
-    //Tests
-    testImplementation TestDependencies.junit
-    androidTestImplementation TestDependencies.junitExt
-    androidTestImplementation TestDependencies.espressoCore
+    //Android Core
+    implementation AndroidDependencies.vectorDrawable
+    implementation AndroidDependencies.constraintLayout
+
+    //Android Architecture
+    implementation AndroidDependencies.navigationFragment
+    implementation AndroidDependencies.navigationUi
+
+    //Dagger
+    api ExternalDependencies.dagger
+    kapt ExternalDependencies.daggerCompiler
+
+    //Rx
+    implementation ExternalDependencies.rxPermissions
 }
