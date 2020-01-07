@@ -44,6 +44,11 @@ class AuthStore @Inject constructor(
     val isLoggedIn: Boolean
         get() = user.isNotNull()
 
+    init {
+        authToken = keyStoreProvider.getData(AUTH_TOKEN)
+        user = getDeserialisedData(keyStoreProvider.getData(AUTH_USER))
+    }
+
     private fun User?.isNotNull(): Boolean {
         return !authToken.isNullOrEmpty() && user != null && this?.userId != 0L
     }

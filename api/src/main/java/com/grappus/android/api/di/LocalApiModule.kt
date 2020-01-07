@@ -3,6 +3,7 @@ package com.grappus.android.api.di
 import com.grappus.android.api.dispatcher.LocalResponseDispatcher
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockWebServer
 import javax.inject.Singleton
@@ -32,6 +33,8 @@ open class LocalApiModule : BaseApiModule() {
     }
 
     override fun mockApiUrl(): String = mockWebServer.url("/").toString()
+
+    override fun addTestSpecificConfig(builder: OkHttpClient.Builder) {}
 
     @Provides
     @Singleton

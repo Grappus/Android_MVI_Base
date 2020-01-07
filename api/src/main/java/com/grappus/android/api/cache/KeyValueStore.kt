@@ -30,7 +30,7 @@ interface KeyValueStore {
 
 class KeyValueStoreImpl @Inject constructor(private val context: Context) : KeyValueStore {
 
-    //TODO why sharedPreferences is not injected instead initialised here
+    //TODO Why sharedPreferences is not injected here instead
     protected val sharedPreferences: SharedPreferences by lazy {
         context.getSharedPreferences(BuildConfig.LIBRARY_PACKAGE_NAME, Context.MODE_PRIVATE)
     }

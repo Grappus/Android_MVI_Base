@@ -17,6 +17,7 @@ ext {
 
 
 project.afterEvaluate {
+
     // Grab all build types and product flavors
     def buildTypes = android.buildTypes.collect { type -> type.name }
     def productFlavors = android.productFlavors.collect { flavor -> flavor.name }

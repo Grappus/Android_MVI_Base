@@ -19,3 +19,14 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Test Libraries
+-dontwarn org.hamcrest.**
+-dontwarn android.test.**
+-dontwarn android.support.test.**
+-keep class org.hamcrest.** { *; }
+-keep class org.junit.** { *; }
+-dontwarn org.junit.**
+-keep class junit.** { *; }
+-dontwarn junit.**
+# End Test Libraries

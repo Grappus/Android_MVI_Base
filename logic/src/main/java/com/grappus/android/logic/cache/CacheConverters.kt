@@ -28,7 +28,7 @@ private inline fun <reified T> fromJson(value: String?): T? = if (value != null)
     null
 }
 
-private inline fun <reified T> toJson(value: T?): String? = if (value != null) {
+private fun <T> toJson(value: T?): String? = if (value != null) {
     converterGson.toJson(value)
 } else {
     null

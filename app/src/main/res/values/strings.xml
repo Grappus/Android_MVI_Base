@@ -7,6 +7,14 @@
 
     <!-- Error Messages -->
     <string name="error_unknown">Something went wrong, please try again!</string>
+    <string name="error_internet">Please check your internet connection and try again!</string>
+    <string name="error_timeout">Could not connect to server, try again!</string>
+    <string name="error_network_400">There was an issue with your request, please notify the app developer if you need assistance!</string>
+    <string name="error_network_408">The request took too long, please try again!</string>
+    <string name="error_network_500">We\'ve encountered an issue, please try again!</string>
+    <string name="error_network_501">The requested service does not exist, please notify the app developer if you need assistance!</string>
+    <string name="error_network_503">The requested service is unavailable, please try again!</string>
+    <string name="error_network_504">The server is not responding, please try again!</string>
     <string name="error_unauthorized">Unauthorized user!</string>
     <string name="error_session_expired">Your session has expired, please login again!</string>
 

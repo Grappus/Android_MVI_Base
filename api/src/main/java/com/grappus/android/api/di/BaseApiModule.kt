@@ -3,7 +3,6 @@ package com.grappus.android.api.di
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.grappus.android.api.services.AuthApi
 import com.grappus.android.api.BuildConfig
 import com.grappus.android.api.cache.KeyValueStore
 import com.grappus.android.api.cache.KeyValueStoreImpl
@@ -12,6 +11,7 @@ import com.grappus.android.api.entities.BuildInfo
 import com.grappus.android.api.extensions.create
 import com.grappus.android.api.interceptors.AuthInterceptor
 import com.grappus.android.api.interceptors.NetInterceptorProvider
+import com.grappus.android.api.services.AuthApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -98,6 +98,8 @@ open class BaseApiModule {
     fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create()
 
     protected open fun mockApiUrl(): String? = null
+
+    protected open fun addTestSpecificConfig(builder: OkHttpClient.Builder) {}
 
     @Provides
     fun provideKeyValueStore(context: Context): KeyValueStore = KeyValueStoreImpl(context)
