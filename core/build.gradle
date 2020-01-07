@@ -46,6 +46,8 @@ dependencies {
     //Tests
     testImplementation TestDependencies.junit
     testImplementation TestDependencies.mockito
+    //Allows checking for conditions via existing matchers classes & custom matcher implementations
+    testImplementation TestDependencies.hamcrest
 
     //Kotlin
     implementation AndroidDependencies.kotlinLib

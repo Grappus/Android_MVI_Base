@@ -13,7 +13,7 @@ object NonHttpErrorCode {
     const val ERROR_UNKNOWN = -102
 }
 
-//TODO Sample error response class to be changed later
+//TODO To be changed as per requirements
 data class ErrorData<T>(
     val payload: T?,
     val statusCode: Int,

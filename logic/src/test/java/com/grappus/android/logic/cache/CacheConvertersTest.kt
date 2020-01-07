@@ -9,7 +9,7 @@ import org.junit.Test
  */
 
 class CacheConvertersTest : BaseLogicTest() {
-    val converters = CacheConverters()
+    private val converters = CacheConverters()
 
     @Test
     fun `list string to list and vice versa conversion happens correctly`() {
@@ -18,5 +18,11 @@ class CacheConvertersTest : BaseLogicTest() {
         assert(convertedString == "[\"1\"]")
         val convertedList = converters.fromStringToListString(convertedString)
         assert(list == convertedList)
+    }
+
+    @Test
+    fun `null string list to string`() {
+        val convertedString = converters.fromListStringToString(null)
+        assert(convertedString.isNullOrEmpty())
     }
 }

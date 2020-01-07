@@ -41,6 +41,8 @@ dependencies {
     api(TestDependencies.mockWebServer) {
         exclude group: 'org.hamcrest', module: 'hamcrest-core'
     }
+    //Allows checking for conditions via existing matchers classes & custom matcher implementations
+    testImplementation TestDependencies.hamcrest
 
     //Kotlin
     implementation AndroidDependencies.kotlinLib

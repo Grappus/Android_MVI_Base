@@ -11,6 +11,10 @@ spotless {
     }
 }
 
+apply from: "../extra/gradle/jacoco.gradle"
+ext.limits.instruction = 80
+ext.limits.branch = 70
+
 android {
     compileSdkVersion Versions.COMPILE_SDK
 
@@ -48,6 +52,8 @@ dependencies {
 
     //Tests
     testImplementation TestDependencies.mockitoKotlin
+    //Allows checking for conditions via existing matchers classes & custom matcher implementations
+    testImplementation TestDependencies.hamcrest
 
     //Room
     api AndroidDependencies.roomRuntime

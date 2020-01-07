@@ -47,6 +47,7 @@ object Versions {
     const val MOCKITO = "2.8.9"
     const val MOCKITO_KOTLIN = "1.6.0"
     const val ANNOTATIONS = "1.0.0"
+    const val HAMCREST = "1.4-atlassian-1"
 
     //Code Style
     const val KT_LINT = "0.11.1"
@@ -122,4 +123,6 @@ object TestDependencies {
 
     //testing
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.OK_HTTP}"
+
+    const val hamcrest = "org.hamcrest:hamcrest-library:${Versions.HAMCREST}"
 }
