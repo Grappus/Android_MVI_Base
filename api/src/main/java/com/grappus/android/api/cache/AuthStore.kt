@@ -3,6 +3,7 @@ package com.grappus.android.api.cache
 import com.google.gson.Gson
 import com.grappus.android.api.cache.BaseStore.Keys.AUTH_TOKEN
 import com.grappus.android.api.cache.BaseStore.Keys.AUTH_USER
+import com.grappus.android.api.cache.BaseStore.Keys.AUTH_USER_ID
 import com.grappus.android.api.dispatcher.CommunicationBusProvider
 import com.grappus.android.api.dispatcher.ResultEvent.AuthChanged
 import com.grappus.android.api.entities.User
@@ -41,6 +42,14 @@ class AuthStore @Inject constructor(
             }
         }
 
+    var userId: Long? = null
+        set(value) {
+            if (field != value) {
+                field = value
+                keyStoreProvider.saveData(AUTH_USER_ID, value?.toString())
+            }
+        }
+
     val isLoggedIn: Boolean
         get() = user.isNotNull()
 
@@ -52,4 +61,5 @@ class AuthStore @Inject constructor(
     private fun User?.isNotNull(): Boolean {
         return !authToken.isNullOrEmpty() && user != null && this?.userId != 0L
     }
+
 }
