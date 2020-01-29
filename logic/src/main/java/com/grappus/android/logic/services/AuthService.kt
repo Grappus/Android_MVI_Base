@@ -9,6 +9,7 @@ import com.grappus.android.api.entities.AuthRequest
 import com.grappus.android.api.entities.LoginResponse
 import com.grappus.android.api.entities.User
 import com.grappus.android.core.extensions.filterMap
+import com.grappus.android.logic.extensions.orZero
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -31,6 +32,9 @@ class AuthService @Inject constructor(
     val user: User?
         get() = authStore.user
 
+    val userId: Long
+        get() = authStore.userId.orZero()
+
     init {
         communicationBusProvider.getResultEventsObservable()
             .filterMap<ResultEvent.AuthError>()
@@ -51,5 +55,17 @@ class AuthService @Inject constructor(
     fun logout() {
         authStore.authToken = null
         authStore.user = null
+    }
+
+    fun getUserInfo(): Single<User> {
+        return user?.let {
+            Single.just(it)
+        } ?: api.getUserInfo()
+            .map {
+                it.payload!!
+            }
+            .doOnSuccess {
+                authStore.user = it.copy(userId = userId)
+            }
     }
 }

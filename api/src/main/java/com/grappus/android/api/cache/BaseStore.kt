@@ -61,5 +61,6 @@ abstract class BaseStore(val keyValueStore: KeyValueStore, val gson: Gson) {
     internal object Keys {
         const val AUTH_TOKEN = "auth_token"
         const val AUTH_USER = "auth_user"
+        const val AUTH_USER_ID = "auth_user_id"
     }
 }
