@@ -12,7 +12,9 @@ interface MainContract {
 
     class ViewState
 
-    sealed class ViewEvent
+    sealed class ViewEvent {
+        data class InternetConnectivityChanged(val internetAvailability : Boolean) : ViewEvent()
+    }
 
     abstract class ViewModel(schedulersProvider: SchedulersProvider) :
         BaseViewModel<ViewState, ViewEvent>(
