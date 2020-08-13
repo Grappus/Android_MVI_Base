@@ -1,6 +1,10 @@
 package com.grappus.android.core
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -8,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.grappus.android.R
 import com.grappus.android.core.contracts.MainContract
+import com.grappus.android.core.contracts.MainContract.ViewEvent.InternetConnectivityChanged
 import com.grappus.android.databinding.ActivityMainBinding
 import com.grappus.android.di.ActivityComponent
 import com.grappus.android.di.AppComponent
@@ -40,6 +45,7 @@ class MainActivity :
     override fun setUpActivity(savedInstanceState: Bundle?) {
         injector().inject(this)
         binding.executePendingBindings()
+        registerInternetConnectivityReceiver()
         navController = findNavController(R.id.main_container)
     }
 
@@ -52,6 +58,11 @@ class MainActivity :
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        unregisterInternetConnectivityReceiver()
+        super.onDestroy()
     }
 
     /**
@@ -68,5 +79,36 @@ class MainActivity :
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    /**
+     * Helper methods to detect network changes and send a broadcast across the app tp react accordingly
+     */
+    private val internetConnectivityBroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val connectivityManager =
+                getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+            val isInternetAvailable = connectivityManager?.activeNetworkInfo?.isConnected ?: false
+
+            dispatchViewEvent(InternetConnectivityChanged(isInternetAvailable))
+        }
+    }
+    private var isInternetConnectivityReceiverRegistered = false
+
+    private fun registerInternetConnectivityReceiver() {
+        if (!isInternetConnectivityReceiverRegistered) {
+            isInternetConnectivityReceiverRegistered = true
+            registerReceiver(
+                internetConnectivityBroadcastReceiver,
+                IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+            )
+        }
+    }
+
+    private fun unregisterInternetConnectivityReceiver() {
+        if (isInternetConnectivityReceiverRegistered) {
+            isInternetConnectivityReceiverRegistered = false
+            unregisterReceiver(internetConnectivityBroadcastReceiver)
+        }
     }
 }

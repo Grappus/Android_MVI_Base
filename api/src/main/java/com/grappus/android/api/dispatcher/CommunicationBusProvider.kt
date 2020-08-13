@@ -9,6 +9,7 @@ import io.reactivex.subjects.PublishSubject
 
 sealed class ResultEvent {
     object AuthError : ResultEvent()
+    data class ConnectivityChanged(val isInternetAvailable: Boolean) : ResultEvent()
     data class AuthChanged(val isLoggedIn: Boolean) : ResultEvent()
 }
 
